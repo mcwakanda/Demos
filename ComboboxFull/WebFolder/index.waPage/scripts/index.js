@@ -21,11 +21,12 @@ WAF.onAfterInit = function onAfterInit() {// @lock
 			{label: "item3", value: "item3v"}
 		];
 		sources.local1.sync(); //When you change the value of a local datasource, sync() is required to update UI
-//		sources.local1.selectByKey("item1");	
-		//BUG: local array datasource selectByKey() does not work, result is that you can't choose
+		sources.local1.selectNext();
+		sources.local1.selectByKey("item1");
+		//Note: you must select the checkbox "key" for this to work properly.
 		//the selection in code without knowing the position - painful problem.
 		//Must iterate through and find in array. (underscore)
-		//BUG: local array select(0) does not work. select(1) chooses second element fine. WAK8 only
+		//BUG: local array select(0) or selectByKey('firstitem') does not work on page first loaded.
 	};// @lock
 
 // @region eventManager// @startlock
