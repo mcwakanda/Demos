@@ -2,15 +2,27 @@
 WAF.onAfterInit = function onAfterInit() {// @lock
 
 // @region namespaceDeclaration// @startlock
+	var local1Event = {};	// @dataSource
 	var local1Combo = {};	// @combobox
 	var documentEvent = {};	// @document
 // @endregion// @endlock
 
 // eventHandlers// @lock
 
+	local1Event.onCurrentElementChange = function local1Event_onCurrentElementChange (event)// @startlock
+	{// @endlock
+		console.log("local1Event.onCurrentElementChange");
+		console.log("example1 value is " + $$("local1Combo").getValue());
+	};// @lock
+
+	local1Event.onBeforeCurrentElementChange = function local1Event_onBeforeCurrentElementChange (event)// @startlock
+	{// @endlock
+		console.log("local1Event.onBeforeCurrentElementChange");
+	};// @lock
+
 	local1Combo.change = function local1Combo_change (event)// @startlock
 	{// @endlock
-		alert("Do something with the value: " + $$("local1Combo").getValue());
+		//alert("Do something with the value: " + $$("local1Combo").getValue());
 	};// @lock
 
 	documentEvent.onLoad = function documentEvent_onLoad (event)// @startlock
@@ -30,6 +42,8 @@ WAF.onAfterInit = function onAfterInit() {// @lock
 	};// @lock
 
 // @region eventManager// @startlock
+	WAF.addListener("local1", "onCurrentElementChange", local1Event.onCurrentElementChange, "WAF");
+	WAF.addListener("local1", "onBeforeCurrentElementChange", local1Event.onBeforeCurrentElementChange, "WAF");
 	WAF.addListener("local1Combo", "change", local1Combo.change, "WAF");
 	WAF.addListener("document", "onLoad", documentEvent.onLoad, "WAF");
 // @endregion
