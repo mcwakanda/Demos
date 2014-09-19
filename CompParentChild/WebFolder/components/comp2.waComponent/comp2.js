@@ -18,7 +18,7 @@ function constructor (id) {
 	// eventHandlers// @lock
 	addEventListener('myEvent1', function (e) { 
 		alert('hello');
-	 }, false);	
+	 });	
 	$$(getHtmlId('comp3Widget')).loadComponent('/components/comp3.waComponent');
 
 	// @region eventManager// @startlock
