@@ -16,7 +16,13 @@ function constructor (id) {
 	// @endregion// @endlock
 
 	// eventHandlers// @lock
-
+	$(document).on('comp1_to_comp3', function(event){
+		alert('comp3 just recieved the message!');
+	});
+	
+	$(document).on('call2Places', function(event, arg1, arg2, arg3){
+		$$(getHtmlId('compText')).setValue("incoming data: " + arg1 + arg2 + arg3);
+	});
 	// @region eventManager// @startlock
 	// @endregion// @endlock
 

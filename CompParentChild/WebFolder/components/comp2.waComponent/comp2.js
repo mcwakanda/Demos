@@ -13,15 +13,23 @@ function constructor (id) {
 	this.load = function (data) {// @lock
 
 	// @region namespaceDeclaration// @startlock
+	var callComp1Button = {};	// @button
 	// @endregion// @endlock
 
 	// eventHandlers// @lock
-	addEventListener('myEvent1', function (e) { 
-		alert('hello');
-	 });	
+
+	callComp1Button.click = function callComp1Button_click (event)// @startlock
+	{// @endlock
+		$(document).trigger('callComp1');
+	};// @lock
+	$(document).on('call2Places', function(event, arg1, arg2, arg3){
+		$$(getHtmlId('compText')).setValue("my incoming data: " + arg1 + arg2 + arg3);
+	});
+	
 	$$(getHtmlId('comp3Widget')).loadComponent('/components/comp3.waComponent');
 
 	// @region eventManager// @startlock
+	WAF.addListener(this.id + "_callComp1Button", "click", callComp1Button.click, "WAF");
 	// @endregion// @endlock
 
 	};// @lock
